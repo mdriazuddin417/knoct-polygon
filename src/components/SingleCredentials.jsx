@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SingleCredentials = ({ item }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigate();
 
   return (
     <div
       className="w-full h-[191px] rounded-10 bg-green-100 p-5 flex flex-col justify-between items-start shadow-md cursor-pointer"
-      //   onClick={() => navigation.navigate("CredentialsDetails")}
+      onClick={() => navigation("/credentials")}
     >
       <p className="text-[14px] font-medium text-gray-500">{item?.date}</p>
       <div className="w-full flex justify-between items-center mt-auto">

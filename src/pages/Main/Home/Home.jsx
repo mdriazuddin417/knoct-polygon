@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DidProfile from "../../../components/DidProfile";
 import SingleHomeGoal from "../../../components/SingleHomeGoal";
 import Hero from "./Hero";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [value, setValue] = useState(false);
@@ -30,12 +31,15 @@ const Home = () => {
               Avoid glare and make sure all 4 corners are visible{" "}
             </p>
           </div>
-          <div to={"/"} className="flex justify-center items-center my-5">
+          <Link
+            to={"/home_credentials_details"}
+            className="flex justify-center items-center my-5"
+          >
             <button className="btn btn-md btn-primary px-8 text-white disabled:bg-gray-200">
               {" "}
               Download
             </button>
-          </div>
+          </Link>
         </div>
       )}
     </div>

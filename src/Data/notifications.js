@@ -6,12 +6,28 @@ export const priorityData = [
     title: "You have been issued a Proof",
     desc: "Suncrest Medical",
     time: "03 Dec 2023",
+    status: "",
   },
   {
     img: bit,
     title: "You have been issued a Proof",
     desc: "Suncrest Medical",
     time: "03 Dec 2023",
+    status: "",
+  },
+  {
+    img: bit,
+    title: "You have been issued a Proof",
+    desc: "Suncrest Medical",
+    time: "03 Dec 2023",
+    status: "",
+  },
+  {
+    img: bit,
+    title: "You have been issued a Proof",
+    desc: "Suncrest Medical",
+    time: "03 Dec 2023",
+    status: "update",
   },
 ];
 export const othersNoti = [
@@ -20,12 +36,14 @@ export const othersNoti = [
     title: "You have been issued a Proof",
     desc: "Suncrest Medical",
     time: "03 Dec 2023",
+    status: "",
   },
   {
     img: bit_2,
     title: "You have been issued a Proof",
     desc: "Suncrest Medical",
     time: "03 Dec 2023",
+    status: "",
   },
 ];
 
@@ -35,17 +53,20 @@ export const logsData = [
     title: "you shared ‘passport check’.",
     desc: "Lofty labs",
     time: "3 hours ago",
+    status: "",
   },
   {
     img: home_2,
     title: "you shared ‘passport check’.",
     desc: "Lofty labs",
     time: "4 Dec 2023",
+    status: "",
   },
   {
     img: home_2,
     title: "you shared ‘passport check’.",
     desc: "Lofty labs",
     time: "4 Dec 2023",
+    status: "",
   },
 ];
