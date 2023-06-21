@@ -9,18 +9,21 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper";
-
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { onBoards } from "../../../Data/onBoards";
 import { google } from "../../../assets/image";
 import { useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
 
 export default function Login() {
   const navigation = useNavigate();
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const onGetStarted = () => {
     // Handle "Get Started" button press
   };
   const handleSignIn = async () => {
-    // Perform the navigation logic here
+    await signInWithGoogle();
+
     navigation("/");
   };
 
