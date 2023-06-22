@@ -10,6 +10,8 @@ import CredentialsDetails from "../pages/Main/Wallet/CredentialsDetails";
 import HomeCredentialsDetails from "../components/HomeCredentialsDetails";
 import SingleSocialConnection from "../components/SingleSocialConnection";
 import RequireAuth from "../pages/RequireAuth";
+import SourceSelection from "../pages/Main/RecoveryWallet/SourceSelection";
+import CloudRecovery from "../pages/Main/RecoveryWallet/CloudRecovery";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/source",
+    element: <SourceSelection />,
+  },
+  {
+    path: "/recovery",
+    element: <CloudRecovery />,
   },
 ]);
 

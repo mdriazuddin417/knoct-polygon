@@ -1,9 +1,9 @@
-import usa from "../assets/country/use.png";
+import usa from "../assets/country/usa.png";
 import ban from "../assets/country/bangladesh.png";
 import ind from "../assets/country/india.png";
 import canada from "../assets/country/canada.png";
 
-export const data = [
+export const countryData = [
   {
     id: 1,
     name: "United State",

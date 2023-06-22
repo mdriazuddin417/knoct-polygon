@@ -12,7 +12,7 @@ import { Pagination, Autoplay } from "swiper";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { onBoards } from "../../../Data/onBoards";
 import { google } from "../../../assets/image";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 
 export default function Login() {
@@ -78,12 +78,14 @@ export default function Login() {
               </span>
             </button>
           </div>
-          <button
-            className="bg-transparent hover:text-gray-500 text-gray-700  duration-300  font-bold py-3 px-6 rounded-lg text-lg  w-full "
-            onClick={onGetStarted}
-          >
-            Recovery wallet
-          </button>
+          <Link to={"/source"}>
+            <button
+              className="bg-transparent hover:text-gray-500 text-gray-700  duration-300  font-bold py-3 px-6 rounded-lg text-lg  w-full "
+              onClick={onGetStarted}
+            >
+              Recovery wallet
+            </button>
+          </Link>
         </div>
       </div>
     </div>
