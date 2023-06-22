@@ -52,3 +52,25 @@
     background: white;
     cursor: row-resize;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.indicator {
+    width: 150px;
+    height: 150px;
+}
