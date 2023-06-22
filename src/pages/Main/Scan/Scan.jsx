@@ -17,7 +17,7 @@ const Scan = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-8 bg-green-100 h-[calc(100vh-70px)] ">
+    <div className="flex flex-col items-center py-8  h-[calc(100vh-70px)] relative">
       <QrReader
         delay={300}
         onError={handleError}

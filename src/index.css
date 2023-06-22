@@ -15,3 +15,40 @@
     color: white;
     background-color: #05BC61;
 }
+
+.resizeable-box {
+    position: absolute;
+    bottom: 0;
+    left: 27%;
+
+    height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    resize: none;
+    overflow: hidden;
+
+}
+
+.resizeable-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset: 0;
+    margin: 0 auto;
+    background: grey;
+    width: 70px;
+    aspect-ratio: 5.1;
+    border-radius: 30px;
+}
+
+.resizer {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: white;
+    cursor: row-resize;
+}

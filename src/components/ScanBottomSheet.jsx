@@ -1,95 +1,57 @@
-import React, { useState } from "react";
-
-// Tailwind CSS classes
-const buttonClasses =
-  "show-modal bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md transition-colors";
-const bottomSheetClasses =
-  "bottom-sheet fixed top-0 left-0 w-full h-full flex opacity-0 pointer-events-none items-center flex-col justify-end transition-opacity";
-const sheetOverlayClasses =
-  "sheet-overlay fixed top-0 left-0 z-0 w-full h-full bg-black opacity-20";
-const sheetContentClasses =
-  "content w-full relative bg-white max-h-screen h-1/2 max-w-3xl p-8 transform translate-y-full rounded-t-lg shadow-lg transition-transform";
-const dragIconClasses = "drag-icon cursor-grab user-select-none p-4 -mt-4";
-const dragIconSpanClasses = "block h-1 w-10 bg-gray-400 rounded-full";
+import React, { useEffect, useRef } from "react";
 
 const ScanBottomSheet = () => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [startY, setStartY] = useState(0);
-  const [startHeight, setStartHeight] = useState(0);
-  const [sheetHeight, setSheetHeight] = useState(50);
-  const [isSheetShown, setIsSheetShown] = useState(false);
+  const refBox = useRef(null);
+  const startY = useRef(null);
+  const startHeight = useRef(null);
 
-  const showBottomSheet = () => {
-    setIsSheetShown(true);
-    document.body.style.overflowY = "hidden";
-    updateSheetHeight(50);
-  };
+  useEffect(() => {
+    const resizeableElement = refBox.current;
 
-  const hideBottomSheet = () => {
-    setIsSheetShown(false);
-    document.body.style.overflowY = "auto";
-  };
+    const onMouseDown = (event) => {
+      startY.current = event.clientY;
+      startHeight.current = parseInt(
+        window.getComputedStyle(resizeableElement).height,
+        10
+      );
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    };
 
-  const updateSheetHeight = (height) => {
-    setSheetHeight(height);
-  };
+    const onMouseMove = (event) => {
+      const deltaY = startY.current - event.clientY;
+      const newHeight = startHeight.current + deltaY;
+      if (newHeight > 0) {
+        resizeableElement.style.height = newHeight + "px";
+      }
+    };
 
-  const dragStart = (e) => {
-    setIsDragging(true);
-    setStartY(e.pageY || e.touches?.[0].pageY);
-    setStartHeight(sheetHeight);
-  };
+    const onMouseUp = () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+    };
 
-  const dragging = (e) => {
-    if (!isDragging) return;
-    const delta = startY - (e.pageY || e.touches?.[0].pageY);
-    const newHeight = startHeight + (delta / window.innerHeight) * 100;
-    updateSheetHeight(newHeight);
-  };
+    const resizer = document.createElement("div");
+    resizer.className = "resizer";
+    resizer.style.cursor = "row-resize";
+    resizer.addEventListener("mousedown", onMouseDown);
+    resizeableElement.appendChild(resizer);
 
-  const dragStop = () => {
-    setIsDragging(false);
-    const currentHeight = sheetHeight;
-    if (currentHeight < 25) {
-      hideBottomSheet();
-    } else if (currentHeight > 75) {
-      updateSheetHeight(100);
-    } else {
-      updateSheetHeight(50);
-    }
-  };
+    return () => {
+      resizer.removeEventListener("mousedown", onMouseDown);
+    };
+  }, []);
 
   return (
-    <>
-      <button className={buttonClasses} onClick={showBottomSheet}>
-        Show Bottom Sheet
-      </button>
-      <div className={`${bottomSheetClasses} ${isSheetShown ? "show" : ""}`}>
-        <div className={sheetOverlayClasses} onClick={hideBottomSheet}></div>
-        <div
-          className={sheetContentClasses}
-          style={{ transform: `translateY(${isSheetShown ? "0%" : "100%"})` }}
-        >
-          <div className="header">
-            <div
-              className={dragIconClasses}
-              onMouseDown={dragStart}
-              onTouchStart={dragStart}
-              onMouseMove={dragging}
-              onTouchMove={dragging}
-              onMouseUp={dragStop}
-              onTouchEnd={dragStop}
-            >
-              <span className={dragIconSpanClasses}></span>
-            </div>
-          </div>
-          <div className="body">
-            <h2>Bottom Sheet Modal</h2>
-            {/* Add the rest of the content here */}
-          </div>
-        </div>
+    <div>
+      <div
+        ref={refBox}
+        className="resizeable-box rounded-tl-[35px] rounded-tr-[35px] border border-gray-400 lg:w-[600px] md:w-[400px] w-[300px] shadow-inner bg-white"
+      >
+        <div className="sign "></div>
+        Resize me from the top
       </div>
-    </>
+    </div>
   );
 };
 
