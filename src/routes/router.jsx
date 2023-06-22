@@ -8,11 +8,17 @@ import Wallet from "../pages/Main/Wallet/Wallet";
 import Notification from "../pages/Main/Notification/Notification";
 import CredentialsDetails from "../pages/Main/Wallet/CredentialsDetails";
 import HomeCredentialsDetails from "../components/HomeCredentialsDetails";
+import SingleSocialConnection from "../components/SingleSocialConnection";
+import RequireAuth from "../pages/RequireAuth";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main />,
+    element: (
+      <RequireAuth>
+        <Main />
+      </RequireAuth>
+    ),
     children: [
       {
         path: "/",
@@ -41,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/singleRegistration",
         element: <SinglePlaceRegistration />,
+      },
+      {
+        path: "/single_connection",
+        element: <SingleSocialConnection />,
       },
     ],
   },

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import DidProfile from "../../../components/DidProfile";
 import SingleHomeGoal from "../../../components/SingleHomeGoal";
-import Hero from "./Hero";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -10,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     setTimeout(() => {
       setValue(true);
-    }, 3000);
+    }, 15000);
   }, []);
 
   return (

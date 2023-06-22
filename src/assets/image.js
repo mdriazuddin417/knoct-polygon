@@ -112,8 +112,10 @@ import ps_4 from "../assets/profile/ps_4.png";
 import ps_5 from "../assets/profile/ps_5.png";
 import ps_6 from "../assets/profile/ps_6.png";
 import sign from "../assets/profile/sign.png";
+import card from "../assets/card.png";
 
 export {
+  card,
   moneyfold,
   profile,
   google,

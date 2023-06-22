@@ -2,8 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import profile from "../../assets/profile.png";
 import { BiBell } from "react-icons/bi";
+import auth from "../../firebase.init";
+import { useSignOut } from "react-firebase-hooks/auth";
 
 const Header = () => {
+  const [signOut, loading, error] = useSignOut(auth);
+
   const navItem = (
     <>
       <li id="sidebar">
@@ -77,12 +81,11 @@ const Header = () => {
           </svg>
         </button>
         <Link to={"/notification"} className="btn btn-ghost btn-circle">
-          <div className="indicator">
-            <span className="indicator-item badge badge-xs badge-secondary text-white">
-              5
-            </span>
-
+          <div className="relative">
             <BiBell size={20} color={"black"} />
+            <div className="absolute -top-1 right-0 bg-green-500 w-3 aspect-[1] rounded-full">
+              <span className="text-white">2</span>
+            </div>
           </div>
         </Link>
 
@@ -106,7 +109,13 @@ const Header = () => {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <button
+                onClick={async () => {
+                  await signOut();
+                }}
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </div>
